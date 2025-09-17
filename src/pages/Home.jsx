@@ -187,8 +187,9 @@ const Home = () => {
             >
               {/* Placeholder for lab/pharma facility image */}
               <div className="w-full h-full bg-gradient-to-br from-[#1E3A5F]/20 to-[#E85B2C]/10 flex items-center justify-center">
-                <span className="text-4xl">🧪🔬🧫</span>
-                <p className="text-[#6B7280] text-center absolute bottom-4">Modern Pharmaceutical Laboratory</p>
+                <img src="/images/pioneering_image.jpg" alt="Modern Pharmaceutical Laboratory" className="object-cover w-full h-full" />
+                {/* <span className="text-4xl">🧪🔬🧫</span>
+                <p className="text-[#6B7280] text-center absolute bottom-4">Modern Pharmaceutical Laboratory</p> */}
               </div>
             </motion.div>
           </div>
@@ -223,7 +224,7 @@ const Home = () => {
                 </h3>
                 <p className="text-[#6B7280]">{item.description}</p>
                 <Link
-                  to="/services"
+                  to="/products"
                   className="mt-4 inline-flex items-center text-[#E85B2C] hover:text-[#E85B2C]/80 font-medium transition-colors duration-200"
                 >
                   Learn More

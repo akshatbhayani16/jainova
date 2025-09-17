@@ -6,10 +6,11 @@ const Products = () => {
   // Product Categories data
   const productCategories = [
     {
-      title: "Generic Medicines",
+      title: "Parenterals",
       description: "High-quality, cost-effective alternatives to brand-name medications across therapeutic areas.",
       icon: "💊",
-      products: ["Antibiotic Formulations", "Cardiovascular Treatments", "Diabetes Management", "Analgesics"]
+      products: ["Antibiotic Formulations", "Cardiovascular Treatments", "Diabetes Management", "Analgesics"],
+      url: "/Parenterals"
     },
     {
       title: "Specialty Drugs",
@@ -34,10 +35,11 @@ const Products = () => {
   // Featured Products data
   const featuredProducts = [
     {
-      name: "Cardiocare Plus",
+      name: "Parenterals",
       category: "Cardiovascular",
       description: "Complete cardiovascular support formulation with enhanced bioavailability.",
-      image: "🫀" // Placeholder icon
+      image: "🫀", // Placeholder icon
+      url: "/products/Parenterals"
     },
     {
       name: "ImmunoBoost",
@@ -122,7 +124,7 @@ const Products = () => {
       </div>
 
       {/* Product Categories */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0, y: -10 }}
@@ -172,12 +174,12 @@ const Products = () => {
             ))}
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Featured Products */}
       <section className="py-16 bg-[#F9FAFB]">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          {/* <div className="text-center mb-12">
             <motion.h2
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -196,7 +198,7 @@ const Products = () => {
             >
               Discover our leading pharmaceutical innovations designed to improve patient outcomes.
             </motion.p>
-          </div>
+          </div> */}
 
           <motion.div 
             variants={containerVariants}
@@ -222,7 +224,7 @@ const Products = () => {
                   <h3 className="text-lg font-semibold text-[#1E3A5F] mt-2 mb-2">{product.name}</h3>
                   <p className="text-[#6B7280] text-sm mb-4">{product.description}</p>
                   <Link
-                    to="#"
+                    to={`/products/${product.name}`}
                     className="text-[#E85B2C] hover:text-[#E85B2C]/80 text-sm font-medium inline-flex items-center"
                   >
                     Learn More

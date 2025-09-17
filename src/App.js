@@ -9,10 +9,13 @@ import Products from './pages/Products';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import ProductDetails from './pages/ProductDetails';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <div className="flex flex-col min-h-screen bg-gray-50">
         <Navbar />
         <main className="flex-grow">
@@ -24,6 +27,7 @@ const App = () => {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/products/:product_id" element={<ProductDetails />} />
           </Routes>
         </main>
         <Footer />
