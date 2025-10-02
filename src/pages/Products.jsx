@@ -6,58 +6,35 @@ const Products = () => {
   // Product Categories data
   const productCategories = [
     {
-      title: "Parenterals",
-      description: "High-quality, cost-effective alternatives to brand-name medications across therapeutic areas.",
+      title: "INJECTIONS",
+      description: "Sterile injectable formulations for intravenous, intramuscular, and subcutaneous administration.",
+      icon: "�",
+      products: ["Antibiotic Injections", "Cardiovascular Injections", "Pain Management", "Vitamin Injections"],
+      url: "/injections"
+    },
+    {
+      title: "OPTHALMIC",
+      description: "Specialized eye care products including drops, ointments, and solutions for ocular conditions.",
+      icon: "👁️",
+      products: ["Eye Drops", "Antibiotic Ointments", "Anti-inflammatory Solutions", "Lubricating Drops"]
+    },
+    {
+      title: "SOLID ORAL",
+      description: "Tablets, capsules, and other solid dosage forms for oral administration.",
       icon: "💊",
-      products: ["Antibiotic Formulations", "Cardiovascular Treatments", "Diabetes Management", "Analgesics"],
-      url: "/Parenterals"
+      products: ["Tablets", "Capsules", "Chewable Forms", "Extended Release"]
     },
     {
-      title: "Specialty Drugs",
-      description: "Advanced therapies for complex conditions requiring specialized handling and administration.",
-      icon: "🧬",
-      products: ["Oncology Treatments", "Immunosuppressants", "Biologics", "Rare Disease Medications"]
+      title: "LIQUID ORAL",
+      description: "Liquid formulations including syrups, suspensions, and solutions for oral intake.",
+      icon: "🧪",
+      products: ["Syrups", "Suspensions", "Oral Solutions", "Pediatric Formulations"]
     },
     {
-      title: "OTC Products",
-      description: "Over-the-counter solutions for everyday health maintenance and minor ailments.",
-      icon: "🏥",
-      products: ["Pain Relief", "Cold & Flu Remedies", "Digestive Health", "Vitamins & Supplements"]
-    },
-    {
-      title: "R&D Innovations",
-      description: "Pipeline products and breakthrough formulations in development for future healthcare needs.",
-      icon: "🔬",
-      products: ["Novel Delivery Systems", "Next-generation Therapies", "Biotechnology Solutions", "Precision Medicine"]
-    }
-  ];
-
-  // Featured Products data
-  const featuredProducts = [
-    {
-      name: "Parenterals",
-      category: "Cardiovascular",
-      description: "Complete cardiovascular support formulation with enhanced bioavailability.",
-      image: "🫀", // Placeholder icon
-      url: "/products/Parenterals"
-    },
-    {
-      name: "ImmunoBoost",
-      category: "Immunology",
-      description: "Advanced immune system support with proprietary blend of active ingredients.",
-      image: "🦠" // Placeholder icon
-    },
-    {
-      name: "NeuroCare",
-      category: "Neurology",
-      description: "Innovative neurological medication designed for improved blood-brain barrier penetration.",
-      image: "🧠" // Placeholder icon
-    },
-    {
-      name: "DigestEase",
-      category: "Gastroenterology",
-      description: "Comprehensive digestive health solution with patented delivery technology.",
-      image: "🧪" // Placeholder icon
+      title: "EXTERNAL PREPARATION",
+      description: "Topical medications for external application including creams, gels, and ointments.",
+      icon: "🧴",
+      products: ["Creams", "Gels", "Ointments", "Lotions"]
     }
   ];
 
@@ -103,28 +80,28 @@ const Products = () => {
       <div className="pt-20 bg-gradient-to-b from-[#1E3A5F]/10 to-white">
         <div className="container mx-auto px-4 py-16">
           <div className="text-center max-w-4xl mx-auto">
-            <motion.h1
+            <motion.h6
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-6xl font-bold text-[#1E3A5F] mb-6"
+              className="text-xl md:text-4xl font-bold text-[#1E3A5F] mb-6"
             >
-              Our Products
-            </motion.h1>
+              Global Pharmaceutical Products for Every Need.
+            </motion.h6>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-xl text-[#6B7280] mb-8"
             >
-              Trusted pharmaceutical solutions for a healthier future.
+              Our pharmaceutical products are available in more than 24+ countries around the world. With strategic partnerships and a robust supply chain, we ensure reliable and timely delivery to healthcare providers, wholesalers, and distributors globally
             </motion.p>
           </div>
         </div>
       </div>
 
       {/* Product Categories */}
-      {/* <section className="py-16 bg-white">
+      <section className="py-16 bg-[#F9FAFB]">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0, y: -10 }}
@@ -141,99 +118,37 @@ const Products = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12"
           >
             {productCategories.map((category, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.03,
-                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-                }}
-                className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:border-[#E85B2C]/30 transition-all duration-300"
-              >
-                <div className="p-6 text-center">
-                  <div className="text-5xl mb-4">{category.icon}</div>
-                  <h3 className="text-xl font-semibold text-[#1E3A5F] mb-3">{category.title}</h3>
-                  <p className="text-[#6B7280] mb-6">{category.description}</p>
-                  
-                  <div className="border-t border-gray-100 pt-4 mt-2">
-                    <h4 className="font-medium text-[#1E3A5F] mb-3">Key Products:</h4>
-                    <ul className="text-[#6B7280] text-sm">
-                      {category.products.map((product, i) => (
-                        <li key={i} className="mb-1 flex items-center">
-                          <span className="text-[#E85B2C] mr-2">•</span>
-                          {product}
-                        </li>
-                      ))}
-                    </ul>
+              <Link key={index} to={`/products/${category.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                <motion.div
+                  variants={itemVariants}
+                  whileHover={{ 
+                    scale: 1.03,
+                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                  }}
+                  className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:border-[#E85B2C]/30 transition-all duration-300 cursor-pointer h-full"
+                >
+                  <div className="p-6 text-center">
+                    <div className="text-5xl mb-4">{category.icon}</div>
+                    <h3 className="text-xl font-semibold text-[#1E3A5F] mb-3">{category.title}</h3>
+                    <p className="text-[#6B7280] mb-6">{category.description}</p>
+                    
+                    <div className="border-t border-gray-100 pt-4 mt-2">
+                      <h4 className="font-medium text-[#1E3A5F] mb-3">Key Products:</h4>
+                      <ul className="text-[#6B7280] text-sm">
+                        {category.products.map((product, i) => (
+                          <li key={i} className="mb-1 flex items-center">
+                            <span className="text-[#E85B2C] mr-2">•</span>
+                            {product}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section> */}
-
-      {/* Featured Products */}
-      <section className="py-16 bg-[#F9FAFB]">
-        <div className="container mx-auto px-4">
-          {/* <div className="text-center mb-12">
-            <motion.h2
-              initial={{ opacity: 0, y: -10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-3xl font-bold text-[#1E3A5F] mb-4"
-            >
-              Featured Products
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-[#6B7280] max-w-2xl mx-auto"
-            >
-              Discover our leading pharmaceutical innovations designed to improve patient outcomes.
-            </motion.p>
-          </div> */}
-
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
-          >
-            {featuredProducts.map((product, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300"
-              >
-                <div className="h-48 bg-gradient-to-br from-[#1E3A5F]/5 to-[#E85B2C]/5 flex items-center justify-center">
-                  <span className="text-6xl">{product.image}</span>
-                </div>
-                <div className="p-6">
-                  <span className="text-xs font-semibold text-[#E85B2C] uppercase tracking-wider">
-                    {product.category}
-                  </span>
-                  <h3 className="text-lg font-semibold text-[#1E3A5F] mt-2 mb-2">{product.name}</h3>
-                  <p className="text-[#6B7280] text-sm mb-4">{product.description}</p>
-                  <Link
-                    to={`/products/${product.name}`}
-                    className="text-[#E85B2C] hover:text-[#E85B2C]/80 text-sm font-medium inline-flex items-center"
-                  >
-                    Learn More
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </motion.div>
 
@@ -246,7 +161,7 @@ const Products = () => {
               whileHover={{ scale: 1.05 }}
               className="bg-[#1E3A5F] text-white px-8 py-3 rounded-lg shadow hover:bg-[#1E3A5F]/90 transition-all duration-200"
             >
-              Download Product Catalogue
+              View Our Full Product Catalog
             </motion.button>
           </div>
         </div>
@@ -357,7 +272,7 @@ const Products = () => {
       </section> */}
 
       {/* Consultation CTA */}
-      <section className="py-16 bg-[#1E3A5F]">
+      {/* <section className="py-16 bg-[#1E3A5F]">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0, y: -10 }}
@@ -391,7 +306,7 @@ const Products = () => {
             </Link>
           </motion.div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

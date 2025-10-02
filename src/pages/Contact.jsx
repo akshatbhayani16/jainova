@@ -51,14 +51,14 @@ const Contact = () => {
     {
       icon: "📞",
       title: "Customer Support",
-      details: "+91 800 555 7890",
-      link: "tel:+918005557890"
+      details: "+91 792 584 0707",
+      link: "tel:+917925840707"
     },
     {
       icon: "✉️",
       title: "Email Inquiries",
-      details: "contact@jainovalife.com",
-      link: "mailto:contact@jainovalife.com"
+      details: "contact@mediplusindialimited.com",
+      link: "mailto:contact@mediplusindialimited.com"
     }
   ];
 
@@ -74,7 +74,7 @@ const Contact = () => {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-5xl font-bold text-[#1E3A5F] mb-4"
             >
-              Contact Us
+              Get in Touch
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0 }}
@@ -82,7 +82,7 @@ const Contact = () => {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-[#6B7280] text-lg max-w-2xl mx-auto"
             >
-              Get in touch with Jainova Lifesciences. We're here to help.
+              Have a question or want to learn more about our products? Our global team is here to help. Contact us today to explore opportunities or get more information.
             </motion.p>
           </div>
         </div>

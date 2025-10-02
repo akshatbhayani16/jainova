@@ -84,13 +84,13 @@ const Home = () => {
         {/* Hero Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-[#1E3A5F]/80 to-transparent z-10"></div>
-          <img 
-            src="/images/home-page-hero.jpg" 
-            alt="Jainova Lifesciences Pharmaceutical Research" 
+          <img
+            src="/images/home-page-hero.jpg"
+            alt="Jainova Lifesciences Pharmaceutical Research"
             className="w-full h-full object-cover"
           />
         </div>
-        
+
         <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-12">
             <motion.div
@@ -105,7 +105,7 @@ const Home = () => {
                 transition={{ duration: 0.6 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
               >
-                Innovating Healthcare, Delivering Trust
+                Global Excellence in Pharmaceutical Products
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -113,7 +113,7 @@ const Home = () => {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="text-xl text-white/90 mb-8 max-w-3xl"
               >
-                Providing high-quality pharmaceutical solutions for a healthier tomorrow.
+                Delivering Safe and Effective Pharmaceutical Medicines Worldwide
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -131,11 +131,11 @@ const Home = () => {
                   to="/contact"
                   className="inline-block bg-transparent text-white border-2 border-white px-8 py-3 rounded-lg shadow-lg hover:bg-white/10 transition-all duration-300 font-medium text-lg"
                 >
-                  Contact Us
+                  Discover Our Global Impact
                 </Link>
               </motion.div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -152,7 +152,7 @@ const Home = () => {
       <section className="py-16 bg-[#F9FAFB]">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-10">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -163,8 +163,9 @@ const Home = () => {
                 Pioneering Excellence in Pharmaceutical Solutions
               </h2>
               <p className="text-[#6B7280] mb-6">
-                At Jainova Lifesciences, we're dedicated to advancing global health through innovative pharmaceutical development, manufacturing, and distribution. With a commitment to quality, affordability, and patient well-being, we deliver trusted medications and healthcare solutions to communities worldwide.
+                At <b>JAINOVA LIFESCIENCES PVT LTD</b>, we are proud to be a trusted global exporter of high-quality pharmaceutical products. We began our journey in the pharmaceutical industry in <span className="font-bold">2013</span>. Through our strategic partnerships and collaborations, including our sister company, <b>VISHWA REMEDIES</b>, we have been able to expand our reach and deliver high-quality pharmaceutical products worldwide.
               </p>
+
               <p className="text-[#6B7280] mb-8">
                 Our state-of-the-art facilities and expert team of scientists and healthcare professionals work tirelessly to meet the highest standards of pharmaceutical excellence.
               </p>
@@ -178,7 +179,7 @@ const Home = () => {
                 </svg>
               </Link>
             </motion.div>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -290,14 +291,13 @@ const Home = () => {
                 <motion.div
                   key={index}
                   initial={{ opacity: 0 }}
-                  animate={{ 
+                  animate={{
                     opacity: currentTestimonial === index ? 1 : 0,
                     x: currentTestimonial === index ? 0 : currentTestimonial > index ? -100 : 100
                   }}
                   transition={{ duration: 0.5 }}
-                  className={`absolute w-full md:w-[80%] p-8 md:p-10 bg-gradient-to-br from-[#1E3A5F]/5 to-[#E85B2C]/5 rounded-xl shadow-md border border-gray-100 text-center ${
-                    currentTestimonial === index ? "block" : "hidden"
-                  }`}
+                  className={`absolute w-full md:w-[80%] p-8 md:p-10 bg-gradient-to-br from-[#1E3A5F]/5 to-[#E85B2C]/5 rounded-xl shadow-md border border-gray-100 text-center ${currentTestimonial === index ? "block" : "hidden"
+                    }`}
                 >
                   <div className="text-5xl text-[#E85B2C] mb-4 opacity-70">"</div>
                   <p className="text-[#6B7280] text-lg md:text-xl italic mb-6 leading-relaxed">{testimonial.quote}</p>
@@ -309,11 +309,11 @@ const Home = () => {
                 </motion.div>
               ))}
             </div>
-            
+
             {/* Testimonial navigation controls */}
             <div className="flex justify-center items-center mt-12 space-x-4">
               {/* Previous button */}
-              <button 
+              <button
                 onClick={() => setCurrentTestimonial(prev => prev === 0 ? testimonials.length - 1 : prev - 1)}
                 className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-200 text-[#1E3A5F] hover:bg-[#1E3A5F] hover:text-white transition-colors duration-300"
               >
@@ -321,25 +321,24 @@ const Home = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              
+
               {/* Navigation dots */}
               <div className="flex space-x-3">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      currentTestimonial === index 
-                        ? "bg-[#E85B2C] w-8" 
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${currentTestimonial === index
+                        ? "bg-[#E85B2C] w-8"
                         : "bg-[#6B7280]/30 hover:bg-[#6B7280]/50"
-                    }`}
+                      }`}
                     aria-label={`Go to testimonial ${index + 1}`}
                   ></button>
                 ))}
               </div>
-              
+
               {/* Next button */}
-              <button 
+              <button
                 onClick={() => setCurrentTestimonial(prev => prev === testimonials.length - 1 ? 0 : prev + 1)}
                 className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-200 text-[#1E3A5F] hover:bg-[#1E3A5F] hover:text-white transition-colors duration-300"
               >

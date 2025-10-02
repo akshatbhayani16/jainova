@@ -41,21 +41,17 @@ const About = () => {
   ];
 
   const strengths = [
-    "ISO 9001 and GMP-certified manufacturing facilities",
-    "100% compliance with WHO and FDA guidelines",
-    "Robust pharmacovigilance and safety monitoring systems",
-    "Extensive distribution network across 45+ countries",
-    "State-of-the-art R&D facilities with specialized research units",
-    "Strategic partnerships with leading academic and research institutions",
-    "Eco-friendly manufacturing practices and sustainable operations"
-  ];
+    "<strong>Global Reach:</strong> Exporting to over 10+ countries across AFRICA, ASIA",
+    "<strong>Compliance with International Standards:</strong> Adhering to GMP, WHO, and local regulatory requirements",
+    "<strong>Commitment to Quality:</strong> Delivering pharmaceutical products that meet the highest standards",
+    ];
 
   return (
     <div className="pt-20 bg-[#F9FAFB] min-h-screen font-sans" style={{ fontFamily: 'Poppins, Inter, sans-serif' }}>
       {/* Hero Section */}
       <div className="w-full bg-gradient-to-b from-[#1E3A5F] to-white py-16">
         <div className="container mx-auto px-4">
-          <motion.div 
+          <motion.div
             className="text-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -73,22 +69,22 @@ const About = () => {
 
       <div className="container mx-auto px-4 py-16">
         {/* Who We Are Section */}
-        <motion.div 
+        <motion.div
           className="max-w-4xl mx-auto mb-20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h2 className="text-3xl font-bold text-[#1E3A5F] text-center mb-8">Who We Are</h2>
+          <h2 className="text-3xl font-bold text-[#1E3A5F] text-center mb-8">Who Are We</h2>
           <div className="bg-white p-8 rounded-lg shadow-lg">
             <p className="text-[#111827] text-lg leading-relaxed">
-              Jainova Lifesciences is a forward-thinking pharmaceutical company dedicated to improving global health through innovative medications and healthcare solutions. Founded in 2008, we've grown from a small research unit to a comprehensive pharmaceutical enterprise with a presence in over 45 countries. Our integrated approach encompasses research, development, manufacturing, and distribution, allowing us to deliver high-quality, affordable medications that address critical healthcare needs worldwide.
+              Founded in 2025, <b>JAINOVA LIFESCIENCES PVT LTD</b> has established itself as a premier pharmaceutical exporter, committed to providing safe, effective, and affordable medicines to markets across 15 regions. Our global presence spans 10+ countries, and we pride ourselves on our compliance with international regulatory standards and our dedication to improving global healthcare.
             </p>
           </div>
         </motion.div>
 
         {/* Mission & Vision Section */}
-        <motion.div 
+        <motion.div
           className="mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -99,13 +95,13 @@ const About = () => {
             <div className="bg-white p-8 rounded-lg shadow-lg border-t-4 border-[#1E3A5F] h-full">
               <h3 className="text-2xl font-bold text-[#1E3A5F] mb-4">Our Mission</h3>
               <p className="text-[#111827] leading-relaxed">
-                Making healthcare accessible, affordable, and innovative through scientific excellence and patient-focused solutions. We strive to address unmet medical needs and improve health outcomes across diverse populations worldwide.
+                We commit ourselves to total customer care by delivering world-class products and services.
               </p>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg border-t-4 border-[#E85B2C] h-full">
               <h3 className="text-2xl font-bold text-[#1E3A5F] mb-4">Our Vision</h3>
               <p className="text-[#111827] leading-relaxed">
-                Global reach through pioneering research and improved patient outcomes. We aspire to be a leading force in pharmaceutical innovation, recognized for our commitment to quality, accessibility, and transformative healthcare solutions that enhance lives in every corner of the world.
+                To become the Most Respected Pharma Company.
               </p>
             </div>
           </div>
@@ -121,7 +117,7 @@ const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.15 }}
-                className="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-all duration-300 group hover:translate-y-[-5px]" 
+                className="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-all duration-300 group hover:translate-y-[-5px]"
                 style={{ borderRadius: '12px' }}
               >
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1E3A5F]/10 text-3xl mb-4 group-hover:bg-[#E85B2C]/10 transition-colors duration-300">
@@ -135,7 +131,7 @@ const About = () => {
         </div>
 
         {/* Leadership Section */}
-        <motion.div 
+        <motion.div
           className="mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -147,9 +143,9 @@ const About = () => {
               <div key={index} className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-lg shadow-lg">
                 <div className="md:w-1/3">
                   <div className="rounded-lg overflow-hidden aspect-square">
-                    <img 
-                      src={leader.image} 
-                      alt={leader.name} 
+                    <img
+                      src={leader.image}
+                      alt={leader.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -165,7 +161,7 @@ const About = () => {
         </motion.div>
 
         {/* Why Choose Us Section */}
-        <motion.div 
+        <motion.div
           className="max-w-4xl mx-auto mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -181,7 +177,7 @@ const About = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
-                  <span className="text-[#111827]">{strength}</span>
+                  <span className="text-[#111827]" dangerouslySetInnerHTML={{ __html: strength }}></span>
                 </li>
               ))}
             </ul>
