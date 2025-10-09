@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Products = () => {
+  const [apiProducts, setApiProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // API call to fetch products
+  useEffect(() => {
+    const fetchProducts = async () => {
+      console.log("Fetching products from API...");
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbz8QjfoVxSERWzHcdEiNquazHJbXkslG-dkos11dKut7jwZTdsNBIOL2RWj52kSteCF/exec", {
+          // redirect: "follow",
+          method: "GET",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          }
+        });
+        const data = await response.json();
+        setApiProducts(data);
+        setLoading(false);
+        console.log("Fetched data:", data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Console log whenever apiProducts state changes
+  useEffect(() => {
+    console.log('API Products state updated:', apiProducts);
+    console.log('Loading state:', loading);
+  }, [apiProducts, loading]);
   // Product Categories data
   const productCategories = [
     {
@@ -50,7 +83,7 @@ const Products = () => {
 
   // Global presence data
   const regions = [
-    "North America", "Europe", "Asia-Pacific", 
+    "North America", "Europe", "Asia-Pacific",
     "Latin America", "Middle East", "Africa"
   ];
 
@@ -113,7 +146,7 @@ const Products = () => {
             Product Categories
           </motion.h2>
 
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -124,7 +157,7 @@ const Products = () => {
               <Link key={index} to={`/products/${category.title.toLowerCase().replace(/\s+/g, '-')}`}>
                 <motion.div
                   variants={itemVariants}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.03,
                     boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
                   }}
@@ -134,7 +167,7 @@ const Products = () => {
                     <div className="text-5xl mb-4">{category.icon}</div>
                     <h3 className="text-xl font-semibold text-[#1E3A5F] mb-3">{category.title}</h3>
                     <p className="text-[#6B7280] mb-6">{category.description}</p>
-                    
+
                     <div className="border-t border-gray-100 pt-4 mt-2">
                       <h4 className="font-medium text-[#1E3A5F] mb-3">Key Products:</h4>
                       <ul className="text-[#6B7280] text-sm">
