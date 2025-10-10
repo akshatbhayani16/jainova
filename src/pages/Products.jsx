@@ -3,40 +3,6 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Products = () => {
-  const [apiProducts, setApiProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // API call to fetch products
-  useEffect(() => {
-    const fetchProducts = async () => {
-      console.log("Fetching products from API...");
-      try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbz8QjfoVxSERWzHcdEiNquazHJbXkslG-dkos11dKut7jwZTdsNBIOL2RWj52kSteCF/exec", {
-          // redirect: "follow",
-          method: "GET",
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-          }
-        });
-        const data = await response.json();
-        setApiProducts(data);
-        setLoading(false);
-        console.log("Fetched data:", data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  // Console log whenever apiProducts state changes
-  useEffect(() => {
-    console.log('API Products state updated:', apiProducts);
-    console.log('Loading state:', loading);
-  }, [apiProducts, loading]);
-  // Product Categories data
   const productCategories = [
     {
       title: "INJECTIONS",
