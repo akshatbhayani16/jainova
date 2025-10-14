@@ -6,7 +6,7 @@ export const colors = {
   primaryAlt: '#2563EB',
   secondary: '#22C55E', // Medical Green
   secondaryAlt: '#16A34A',
-  accent: '#0D9488', // Fresh Teal
+  accent: '#a7f5ee', // Fresh Teal
   highlight: '#F59E0B', // Orange/Yellow
   background: '#FFFFFF', // White
   backgroundLight: '#F9FAFB', // Light Gray

@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
 
-const Products = () => {
+const Products = ({ apiProducts }) => {
   const productCategories = [
     {
-      title: "INJECTIONS",
+      title: "INJECTABLE",
       description: "Sterile injectable formulations for intravenous, intramuscular, and subcutaneous administration.",
       icon: "�",
       products: ["Antibiotic Injections", "Cardiovascular Injections", "Pain Management", "Vitamin Injections"],
-      url: "/injections"
+      url: "/Injectable"
     },
     {
-      title: "OPTHALMIC",
+      title: "OPHTHALMIC",
       description: "Specialized eye care products including drops, ointments, and solutions for ocular conditions.",
       icon: "👁️",
-      products: ["Eye Drops", "Antibiotic Ointments", "Anti-inflammatory Solutions", "Lubricating Drops"]
+      products: ["Eye Drops", "Antibiotic Ointments", "Anti-inflammatory Solutions", "Lubricating Drops"],
+      url: "/ophthalmic"
     },
     {
       title: "SOLID ORAL",
@@ -36,6 +39,133 @@ const Products = () => {
       products: ["Creams", "Gels", "Ointments", "Lotions"]
     }
   ];
+
+  // Function to download full product catalog
+  const handleDownloadFullCatalog = () => {
+    let rawData = [];
+    
+    if (apiProducts?.data) {
+      rawData = apiProducts.data;
+    } else if (Array.isArray(apiProducts)) {
+      rawData = apiProducts;
+    } else if (apiProducts && typeof apiProducts === 'object') {
+      // Try to find an array property
+      const arrayProps = Object.keys(apiProducts).filter(key => Array.isArray(apiProducts[key]));
+      if (arrayProps.length > 0) {
+        rawData = apiProducts[arrayProps[0]];
+      }
+    }
+    
+    const validData = Array.isArray(rawData) ? rawData : [];    
+    const allProducts = validData.filter(item => {
+      const isValid = item && 
+        typeof item === 'object' && 
+        item['product-name'] && 
+        item['product-name'].trim() !== '' &&
+        item['product-name'] !== 'Product Name'; // Exclude header row if present      
+        return isValid;
+    });
+
+    const typeBreakdown = allProducts.reduce((acc, product) => {
+      const type = product.type || 'Other';
+      acc[type] = (acc[type] || 0) + 1;
+      return acc;
+    }, {});
+
+    if (allProducts.length === 0) {
+      alert("No product data available to export!");
+      return;
+    }
+
+    const doc = new jsPDF();
+    doc.setFontSize(20);
+    doc.text("Complete Product Catalog", 14, 20);
+    
+    doc.setFontSize(12);
+    doc.text("Jainova Pharmaceuticals", 14, 30);
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 38);
+    doc.text(`Total Products: ${allProducts.length}`, 14, 46);
+
+    // Group products by type for better organization
+    const groupedProducts = allProducts.reduce((acc, product) => {
+      const type = product.type || 'Other';
+      if (!acc[type]) acc[type] = [];
+      acc[type].push(product);
+      return acc;
+    }, {});
+
+    let currentY = 60;
+    const pageHeight = doc.internal.pageSize.height;
+
+    // Create sections for each product type
+    Object.keys(groupedProducts).forEach((type, typeIndex) => {
+      // Check if we need a new page
+      if (currentY > pageHeight - 80) {
+        doc.addPage();
+        currentY = 20;
+      }
+
+      // Type header
+      doc.setFontSize(16);
+      doc.setFont(undefined, 'bold');
+      doc.text(`${type.toUpperCase()} PRODUCTS`, 14, currentY);
+      currentY += 10;
+
+      // Create table for this type
+      autoTable(doc, {
+        head: [["S.No", "Type", "Product Name"]],
+        body: groupedProducts[type].map((product, index) => [
+          index + 1,
+          product.type || 'N/A',
+          product['product-name'] || 'N/A'
+        ]),
+        startY: currentY,
+        styles: { 
+          halign: "left",
+          fontSize: 9
+        },
+        headStyles: { 
+          fillColor: [231, 91, 44], // Using your brand color
+          textColor: [255, 255, 255],
+          fontStyle: 'bold'
+        },
+        alternateRowStyles: {
+          fillColor: [248, 250, 252]
+        },
+        margin: { left: 14, right: 14 },
+        didDrawPage: function(data) {
+          currentY = data.cursor.y + 10;
+        }
+      });
+
+      currentY = doc.lastAutoTable.finalY + 15;
+    });
+
+    // Summary page if multiple types
+    if (Object.keys(groupedProducts).length > 1) {
+      doc.addPage();
+      doc.setFontSize(16);
+      doc.setFont(undefined, 'bold');
+      doc.text("Product Summary by Category", 14, 20);
+      
+      autoTable(doc, {
+        head: [["Product Type", "Count"]],
+        body: Object.keys(groupedProducts).map(type => [
+          type,
+          groupedProducts[type].length
+        ]),
+        startY: 30,
+        styles: { halign: "center" },
+        headStyles: { 
+          fillColor: [30, 58, 95], // Your brand dark blue
+          textColor: [255, 255, 255]
+        }
+      });
+    }
+
+    const fileName = `Jainova Complete Catalog ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}.pdf`;
+    doc.save(fileName);
+  };
 
   // Certifications data
   const certifications = [
@@ -130,15 +260,17 @@ const Products = () => {
                   className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:border-[#E85B2C]/30 transition-all duration-300 cursor-pointer h-full"
                 >
                   <div className="p-6 text-center">
-                    <div className="text-5xl mb-4">{category.icon}</div>
-                    <h3 className="text-xl font-semibold text-[#1E3A5F] mb-3">{category.title}</h3>
-                    <p className="text-[#6B7280] mb-6">{category.description}</p>
+                    <div className='min-h-[170px] md:min-h-[260px]'>
+                      <div className="text-5xl mb-4">{category.icon}</div>
+                      <h3 className="text-xl font-semibold text-[#1E3A5F] mb-3">{category.title}</h3>
+                      <p className="text-[#6B7280] mb-6">{category.description}</p>
+                    </div>
 
                     <div className="border-t border-gray-100 pt-4 mt-2">
-                      <h4 className="font-medium text-[#1E3A5F] mb-3">Key Products:</h4>
+                      <h4 className="font-medium text-left text-[#1E3A5F] mb-3">Key Products:</h4>
                       <ul className="text-[#6B7280] text-sm">
                         {category.products.map((product, i) => (
-                          <li key={i} className="mb-1 flex items-center">
+                          <li key={i} className="mb-1 text-left flex items-center">
                             <span className="text-[#E85B2C] mr-2">•</span>
                             {product}
                           </li>
@@ -158,6 +290,7 @@ const Products = () => {
               transition={{ delay: 0.3, duration: 0.5 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05 }}
+              onClick={handleDownloadFullCatalog}
               className="bg-[#1E3A5F] text-white px-8 py-3 rounded-lg shadow hover:bg-[#1E3A5F]/90 transition-all duration-200"
             >
               View Our Full Product Catalog

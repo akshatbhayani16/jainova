@@ -121,7 +121,7 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="bg-white rounded-lg shadow-md p-8"
           >
-            <h2 className="text-2xl font-bold text-[#1E3A5F] mb-6">Send Us a Message</h2>
+            <h2 className="text-2xl font-bold text-[#1E3A5F] mb-6">Let's Chat</h2>
             {submitStatus.message && (
               <div className={`mb-6 p-4 rounded-lg ${
                 submitStatus.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
@@ -178,6 +178,7 @@ const Contact = () => {
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] focus:border-transparent transition-all duration-200"
                   required
                   placeholder="Your message..."
+                  style={{height:'380px'}}
                 ></textarea>
               </div>
               <motion.button

@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleNavClick = (path) => {
     if (location.pathname === path) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    // Close mobile menu when a link is clicked
+    setIsMobileMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -16,13 +23,20 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <Link 
             to="/" 
-            className="text-[#1E3A5F] text-2xl font-bold tracking-tight rounded-lg px-2 py-1"
+            className="flex items-center rounded-lg px-2 py-1"
             onClick={() => handleNavClick('/')}
             style={{ borderRadius: '8px' }}
-          >
-            Jainova Lifesciences
+            >
+            <img 
+              style={{ transform: 'scale(2)' }}
+              src="/images/jainova-lifesciences-logo.png" 
+              alt="Jainova Lifesciences Logo" 
+              className="h-8 md:h-10 w-auto"
+            />
           </Link>
-          <ul className="flex space-x-8">
+          
+          {/* Desktop Navigation */}
+          <ul className="hidden md:flex space-x-8">
             <li>
               <Link 
                 to="/" 
@@ -43,16 +57,6 @@ const Navbar = () => {
                 About
               </Link>
             </li>
-            {/* <li>
-              <Link 
-                to="/services" 
-                className="text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
-                onClick={() => handleNavClick('/services')}
-                style={{ borderRadius: '8px' }}
-              >
-                Services
-              </Link>
-            </li> */}
             <li>
               <Link 
                 to="/products" 
@@ -77,6 +81,73 @@ const Navbar = () => {
               <Link 
                 to="/contact" 
                 className="text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                onClick={() => handleNavClick('/contact')}
+                style={{ borderRadius: '8px' }}
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
+
+          {/* Hamburger Menu Button */}
+          <button
+            className="md:hidden flex flex-col justify-center items-center w-8 h-8 relative"
+            onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+          >
+            <span className={`w-6 h-0.5 bg-[#1E3A5F] transition-all duration-300 absolute ${isMobileMenuOpen ? 'rotate-45' : '-translate-y-2'}`}></span>
+            <span className={`w-6 h-0.5 bg-[#1E3A5F] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`w-6 h-0.5 bg-[#1E3A5F] transition-all duration-300 absolute ${isMobileMenuOpen ? '-rotate-45' : 'translate-y-2'}`}></span>
+          </button>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        <div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+          <ul className="flex flex-col space-y-2 pt-4 pb-2">
+            <li>
+              <Link 
+                to="/" 
+                className="block text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                onClick={() => handleNavClick('/')}
+                style={{ borderRadius: '8px' }}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/about" 
+                className="block text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                onClick={() => handleNavClick('/about')}
+                style={{ borderRadius: '8px' }}
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/products" 
+                className="block text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                onClick={() => handleNavClick('/products')}
+                style={{ borderRadius: '8px' }}
+              >
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/blog" 
+                className="block text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                onClick={() => handleNavClick('/blog')}
+                style={{ borderRadius: '8px' }}
+              >
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/contact" 
+                className="block text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
                 onClick={() => handleNavClick('/contact')}
                 style={{ borderRadius: '8px' }}
               >

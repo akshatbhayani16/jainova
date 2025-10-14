@@ -273,7 +273,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-[#1E3A5F] mb-4">
@@ -285,7 +285,6 @@ const Home = () => {
           </div>
 
           <div className="max-w-4xl mx-auto relative">
-            {/* Testimonial Cards */}
             <div className="overflow-hidden h-[300px] flex items-center justify-center">
               {testimonials.map((testimonial, index) => (
                 <motion.div
@@ -310,9 +309,7 @@ const Home = () => {
               ))}
             </div>
 
-            {/* Testimonial navigation controls */}
             <div className="flex justify-center items-center mt-12 space-x-4">
-              {/* Previous button */}
               <button
                 onClick={() => setCurrentTestimonial(prev => prev === 0 ? testimonials.length - 1 : prev - 1)}
                 className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-200 text-[#1E3A5F] hover:bg-[#1E3A5F] hover:text-white transition-colors duration-300"
@@ -322,7 +319,6 @@ const Home = () => {
                 </svg>
               </button>
 
-              {/* Navigation dots */}
               <div className="flex space-x-3">
                 {testimonials.map((_, index) => (
                   <button
@@ -337,7 +333,6 @@ const Home = () => {
                 ))}
               </div>
 
-              {/* Next button */}
               <button
                 onClick={() => setCurrentTestimonial(prev => prev === testimonials.length - 1 ? 0 : prev + 1)}
                 className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-200 text-[#1E3A5F] hover:bg-[#1E3A5F] hover:text-white transition-colors duration-300"
@@ -349,7 +344,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-16 bg-[#1E3A5F]">

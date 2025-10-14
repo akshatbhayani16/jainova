@@ -39,7 +39,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <h3 className="text-xl font-bold mb-4 tracking-tight">PharmaNova</h3>
-            <p className="text-[#0D9488]">
+            <p className="text-[#a7f5ee]">
               Innovating Healthcare, Delivering Trust.<br />Your partner in pharmaceutical excellence.
             </p>
             {/* Social Media Links */}
@@ -52,7 +52,7 @@ const Footer = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-[#0D9488] transition-colors duration-300 rounded-lg p-2"
+                    className="text-white hover:text-[#a7f5ee] transition-colors duration-300 rounded-lg p-2"
                     style={{ borderRadius: '8px' }}
                     aria-label={`Follow us on ${social.name}`}
                   >
@@ -65,29 +65,29 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              <li><Link to="/" className="hover:text-[#0D9488] transition-colors duration-300">Home</Link></li>
-              <li><Link to="/about" className="hover:text-[#0D9488] transition-colors duration-300">About</Link></li>
-              <li><Link to="/services" className="hover:text-[#0D9488] transition-colors duration-300">Products</Link></li>
-              <li><Link to="/blog" className="hover:text-[#0D9488] transition-colors duration-300">Blog</Link></li>
-              <li><Link to="/contact" className="hover:text-[#0D9488] transition-colors duration-300">Contact</Link></li>
+              <li><Link to="/" className="hover:text-[#a7f5ee] transition-colors duration-300">Home</Link></li>
+              <li><Link to="/about" className="hover:text-[#a7f5ee] transition-colors duration-300">About</Link></li>
+              <li><Link to="/services" className="hover:text-[#a7f5ee] transition-colors duration-300">Products</Link></li>
+              <li><Link to="/blog" className="hover:text-[#a7f5ee] transition-colors duration-300">Blog</Link></li>
+              <li><Link to="/contact" className="hover:text-[#a7f5ee] transition-colors duration-300">Contact</Link></li>
             </ul>
           </div>
           {/* Products & Services */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Products & Services</h4>
             <ul className="space-y-2">
-              <li><span className="text-[#0D9488]">Pharma Products</span></li>
-              <li><span className="text-[#0D9488]">Generic Medicines</span></li>
-              <li><span className="text-[#0D9488]">R&D Capabilities</span></li>
-              <li><span className="text-[#0D9488]">Quality & Compliance</span></li>
-              <li><span className="text-[#0D9488]">Global Distribution</span></li>
+              <li><span className="text-[#a7f5ee]">Pharma Products</span></li>
+              <li><span className="text-[#a7f5ee]">Generic Medicines</span></li>
+              <li><span className="text-[#a7f5ee]">R&D Capabilities</span></li>
+              <li><span className="text-[#a7f5ee]">Quality & Compliance</span></li>
+              <li><span className="text-[#a7f5ee]">Global Distribution</span></li>
             </ul>
           </div>
           {/* Contact Info */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
             <ul className="space-y-4">
-              <li className="flex items-start text-[#0D9488]">
+              <li className="flex items-start text-[#a7f5ee]">
                 <span className="mt-1 mr-3">
                   {/* Address Icon */}
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zm0 0c-4 0-7 2.239-7 5v2h14v-2c0-2.761-3-5-7-5z" /></svg>
@@ -96,14 +96,14 @@ const Footer = () => {
                   PharmaNova Campus, Pharma City,<br />Ahmedabad, Gujarat
                 </span>
               </li>
-              <li className="flex items-center text-[#0D9488]">
+              <li className="flex items-center text-[#a7f5ee]">
                 <span className="mr-3">
                   {/* Phone Icon */}
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm10-10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
                 </span>
                 <span>+91 800 123 4567</span>
               </li>
-              <li className="flex items-center text-[#0D9488]">
+              <li className="flex items-center text-[#a7f5ee]">
                 <span className="mr-3">
                   {/* Email Icon */}
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm0 0v4a4 4 0 01-8 0v-4" /></svg>
@@ -114,8 +114,8 @@ const Footer = () => {
           </div>
         </div>
         {/* Bottom Bar */}
-        <div className="border-t border-[#0D9488]/20 mt-8 pt-8 text-center">
-          <p className="text-[#0D9488]">
+        <div className="border-t border-[#a7f5ee]/20 mt-8 pt-8 text-center">
+          <p className="text-[#a7f5ee]">
             © {new Date().getFullYear()} PharmaNova. All rights reserved.
           </p>
         </div>
