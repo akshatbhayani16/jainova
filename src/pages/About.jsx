@@ -113,6 +113,59 @@ const About = () => {
           </div>
         </motion.div>
 
+        {/* Our Achievements Section */}
+        <motion.div
+          className="mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <h2 className="text-3xl font-bold text-[#1E3A5F] text-center mb-12">Our Achievements</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Countries */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-all duration-300 group hover:translate-y-[-5px]"
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1E3A5F]/10 text-4xl mb-4 group-hover:bg-[#E85B2C]/10 transition-colors duration-300">
+                🌍
+              </div>
+              <p className="text-4xl font-bold text-[#1E3A5F] mb-2">9 +</p>
+              <p className="text-[#6B7280] text-lg">Countries</p>
+            </motion.div>
+
+            {/* Happy Customers */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-all duration-300 group hover:translate-y-[-5px]"
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1E3A5F]/10 text-4xl mb-4 group-hover:bg-[#E85B2C]/10 transition-colors duration-300">
+                👥
+              </div>
+              <p className="text-4xl font-bold text-[#1E3A5F] mb-2">11 +</p>
+              <p className="text-[#6B7280] text-lg">Happy Customers</p>
+            </motion.div>
+
+            {/* Product Portfolio */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-all duration-300 group hover:translate-y-[-5px]"
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1E3A5F]/10 text-4xl mb-4 group-hover:bg-[#E85B2C]/10 transition-colors duration-300">
+                📦
+              </div>
+              <p className="text-4xl font-bold text-[#1E3A5F] mb-2">300 +</p>
+              <p className="text-[#6B7280] text-lg">Product Portfolio</p>
+            </motion.div>
+          </div>
+        </motion.div>
+
         {/* Core Values Section */}
         <div className="mb-20">
           <h2 className="text-3xl font-bold text-[#1E3A5F] text-center mb-12">Our Core Values</h2>
