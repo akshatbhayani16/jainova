@@ -198,7 +198,7 @@ const Home = () => {
       </section>
 
       {/* Products/Services Overview */}
-      <section className="py-16 bg-white">
+      <section className="py-8 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-[#1E3A5F] mb-4">

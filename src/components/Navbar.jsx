@@ -17,9 +17,23 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Helper function to check if a path is active
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
+  // Helper function to get active/inactive styles
+  const getLinkClass = (path) => {
+    const baseClass = "font-medium px-3 py-2 rounded-lg transition-all duration-300";
+    if (isActive(path)) {
+      return `${baseClass} text-white bg-[#E85B2C] shadow-md`;
+    }
+    return `${baseClass} text-[#1E3A5F] hover:text-[#E85B2C] hover:bg-[#E85B2C]/10`;
+  };
+
   return (
     <nav className="bg-white fixed w-full top-0 z-50 shadow-sm font-sans" style={{ fontFamily: 'Poppins, Inter, sans-serif' }}>
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-4" style={{paddingLeft:'30px'}}>
         <div className="flex justify-between items-center">
           <Link 
             to="/" 
@@ -29,7 +43,7 @@ const Navbar = () => {
             >
             <img 
               style={{ transform: 'scale(2)' }}
-              src="/images/jainova-lifesciences-logo.png" 
+              src="/images/jainova-lifesciences-logo.jpg" 
               alt="Jainova Lifesciences Logo" 
               className="h-8 md:h-10 w-auto"
             />
@@ -40,9 +54,8 @@ const Navbar = () => {
             <li>
               <Link 
                 to="/" 
-                className="text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                className={getLinkClass('/')}
                 onClick={() => handleNavClick('/')}
-                style={{ borderRadius: '8px' }}
               >
                 Home
               </Link>
@@ -50,9 +63,8 @@ const Navbar = () => {
             <li>
               <Link 
                 to="/about" 
-                className="text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                className={getLinkClass('/about')}
                 onClick={() => handleNavClick('/about')}
-                style={{ borderRadius: '8px' }}
               >
                 About
               </Link>
@@ -60,9 +72,8 @@ const Navbar = () => {
             <li>
               <Link 
                 to="/products" 
-                className="text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                className={getLinkClass('/products')}
                 onClick={() => handleNavClick('/products')}
-                style={{ borderRadius: '8px' }}
               >
                 Products
               </Link>
@@ -70,9 +81,8 @@ const Navbar = () => {
             <li>
               <Link 
                 to="/blog" 
-                className="text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                className={getLinkClass('/blog')}
                 onClick={() => handleNavClick('/blog')}
-                style={{ borderRadius: '8px' }}
               >
                 Blog
               </Link>
@@ -80,9 +90,8 @@ const Navbar = () => {
             <li>
               <Link 
                 to="/contact" 
-                className="text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                className={getLinkClass('/contact')}
                 onClick={() => handleNavClick('/contact')}
-                style={{ borderRadius: '8px' }}
               >
                 Contact
               </Link>
@@ -107,9 +116,8 @@ const Navbar = () => {
             <li>
               <Link 
                 to="/" 
-                className="block text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                className={`block ${getLinkClass('/')}`}
                 onClick={() => handleNavClick('/')}
-                style={{ borderRadius: '8px' }}
               >
                 Home
               </Link>
@@ -117,9 +125,8 @@ const Navbar = () => {
             <li>
               <Link 
                 to="/about" 
-                className="block text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                className={`block ${getLinkClass('/about')}`}
                 onClick={() => handleNavClick('/about')}
-                style={{ borderRadius: '8px' }}
               >
                 About
               </Link>
@@ -127,9 +134,8 @@ const Navbar = () => {
             <li>
               <Link 
                 to="/products" 
-                className="block text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                className={`block ${getLinkClass('/products')}`}
                 onClick={() => handleNavClick('/products')}
-                style={{ borderRadius: '8px' }}
               >
                 Products
               </Link>
@@ -137,9 +143,8 @@ const Navbar = () => {
             <li>
               <Link 
                 to="/blog" 
-                className="block text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                className={`block ${getLinkClass('/blog')}`}
                 onClick={() => handleNavClick('/blog')}
-                style={{ borderRadius: '8px' }}
               >
                 Blog
               </Link>
@@ -147,9 +152,8 @@ const Navbar = () => {
             <li>
               <Link 
                 to="/contact" 
-                className="block text-[#1E3A5F] hover:text-[#E85B2C] transition-colors duration-300 font-medium px-3 py-2 rounded-lg"
+                className={`block ${getLinkClass('/contact')}`}
                 onClick={() => handleNavClick('/contact')}
-                style={{ borderRadius: '8px' }}
               >
                 Contact
               </Link>

@@ -94,7 +94,7 @@ export default function TableWithPDF({product_id, tableData}) {
             onChange={(e) => setSearch(e.target.value)}
             className="border border-gray-300 rounded-lg px-4 py-2 flex-1 focus:outline-none focus:ring-2 focus:ring-[#E85B2C] transition"
           />
-          <select
+          {/* <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
             className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E85B2C] transition"
@@ -103,7 +103,7 @@ export default function TableWithPDF({product_id, tableData}) {
             {uniqueTypes.map(type => (
               <option key={type} value={type}>{type}</option>
             ))}
-          </select>
+          </select> */}
         </div>
         <button
           onClick={handleDownloadPDF}

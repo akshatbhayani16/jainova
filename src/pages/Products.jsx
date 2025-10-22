@@ -3,39 +3,53 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
+import { icons } from 'lucide-react';
 
 const Products = ({ apiProducts }) => {
   const productCategories = [
     {
-      title: "INJECTABLE",
+      title: "GENERAL INJECTABLE",
       description: "Sterile injectable formulations for intravenous, intramuscular, and subcutaneous administration.",
-      icon: "�",
+      // icon: "💉",
+      icon: <img src="/icons/injectable.png" alt="Injectable Icon" className="mx-auto" style={{width: '3rem', height: '3rem'}} />,
+      products: ["Antibiotic Injections", "Cardiovascular Injections", "Pain Management", "Vitamin Injections"],
+      url: "/Injectable"
+    },
+    {
+      title: "BETA LACTUM INJECTABLE",
+      description: "Sterile injectable formulations for intravenous, intramuscular, and subcutaneous administration.",
+      // icon: "💉",
+      icon: <img src="/icons/bl-injectable.png" alt="bl-Injectable Icon" className="mx-auto" style={{width: '3rem', height: '3rem'}} />,
       products: ["Antibiotic Injections", "Cardiovascular Injections", "Pain Management", "Vitamin Injections"],
       url: "/Injectable"
     },
     {
       title: "OPHTHALMIC",
       description: "Specialized eye care products including drops, ointments, and solutions for ocular conditions.",
-      icon: "👁️",
+      // icon: "👁️",
+      icon: <img src="/icons/opthalmic.png" alt="ophthalmic Icon" className="mx-auto" style={{width: '3rem', height: '3rem'}} />,
       products: ["Eye Drops", "Antibiotic Ointments", "Anti-inflammatory Solutions", "Lubricating Drops"],
       url: "/ophthalmic"
     },
     {
       title: "SOLID ORAL",
       description: "Tablets, capsules, and other solid dosage forms for oral administration.",
-      icon: "💊",
+      // icon: "💊",
+      icon: <img src="/icons/solid-oral.png" alt="Solid Oral Icon" className="mx-auto" style={{width: '3rem', height: '3rem'}} />,
       products: ["Tablets", "Capsules", "Chewable Forms", "Extended Release"]
     },
     {
       title: "LIQUID ORAL",
       description: "Liquid formulations including syrups, suspensions, and solutions for oral intake.",
-      icon: "🧪",
+      // icon: "🍯",
+      icon: <img src="/icons/liquid-oral.png" alt="Liquid Oral Icon" className="mx-auto" style={{width: '3rem', height: '3rem'}} />,
       products: ["Syrups", "Suspensions", "Oral Solutions", "Pediatric Formulations"]
     },
     {
       title: "EXTERNAL PREPARATION",
       description: "Topical medications for external application including creams, gels, and ointments.",
-      icon: "🧴",
+      // icon: "🧼",
+      icon: <img src="/icons/external-preparation.png" alt="External Prep Icon" className="mx-auto" style={{width: '3rem', height: '3rem'}} />,
       products: ["Creams", "Gels", "Ointments", "Lotions"]
     }
   ];
@@ -79,12 +93,12 @@ const Products = ({ apiProducts }) => {
 
     const doc = new jsPDF();
     doc.setFontSize(20);
-    doc.text("Complete Product Catalog", 14, 20);
+    // doc.text("Complete Product Catalog", 14, 20);
     
-    doc.setFontSize(12);
-    doc.text("Jainova Pharmaceuticals", 14, 30);
-    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 38);
-    doc.text(`Total Products: ${allProducts.length}`, 14, 46);
+    doc.setFontSize(16);
+    doc.text("Jainova Lifesciences Pvt. Ltd.", 14, 10, { align: "left" });
+    // doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 38);
+    // doc.text(`Total Products: ${allProducts.length}`, 14, 46);
 
     // Group products by type for better organization
     const groupedProducts = allProducts.reduce((acc, product) => {
@@ -94,9 +108,31 @@ const Products = ({ apiProducts }) => {
       return acc;
     }, {});
 
-    let currentY = 60;
+    let currentY = 20;
     const pageHeight = doc.internal.pageSize.height;
 
+    if (Object.keys(groupedProducts).length > 1) {
+      // doc.addPage();
+      doc.setFontSize(14);
+      doc.setFont(undefined, 'bold');
+      // doc.text("Product Summary by Category", 14, 70);
+      doc.text("Product Summary by Category", doc.internal.pageSize.getWidth() / 2, 30, { align: "center" });
+      
+      autoTable(doc, {
+        head: [["Product Type", "Count"]],
+        body: Object.keys(groupedProducts).map(type => [
+          type,
+          groupedProducts[type].length
+        ]),
+        startY: 40,
+        styles: { halign: "center" },
+        headStyles: { 
+          fillColor: [30, 58, 95], // Your brand dark blue
+          textColor: [255, 255, 255]
+        }
+      });
+    }
+    doc.addPage();
     // Create sections for each product type
     Object.keys(groupedProducts).forEach((type, typeIndex) => {
       // Check if we need a new page
@@ -110,7 +146,7 @@ const Products = ({ apiProducts }) => {
       doc.setFont(undefined, 'bold');
       doc.text(`${type.toUpperCase()} PRODUCTS`, 14, currentY);
       currentY += 10;
-
+      
       // Create table for this type
       autoTable(doc, {
         head: [["S.No", "Type", "Product Name"]],
@@ -142,26 +178,6 @@ const Products = ({ apiProducts }) => {
     });
 
     // Summary page if multiple types
-    if (Object.keys(groupedProducts).length > 1) {
-      doc.addPage();
-      doc.setFontSize(16);
-      doc.setFont(undefined, 'bold');
-      doc.text("Product Summary by Category", 14, 20);
-      
-      autoTable(doc, {
-        head: [["Product Type", "Count"]],
-        body: Object.keys(groupedProducts).map(type => [
-          type,
-          groupedProducts[type].length
-        ]),
-        startY: 30,
-        styles: { halign: "center" },
-        headStyles: { 
-          fillColor: [30, 58, 95], // Your brand dark blue
-          textColor: [255, 255, 255]
-        }
-      });
-    }
 
     const fileName = `Jainova Complete Catalog ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}.pdf`;
     doc.save(fileName);
@@ -223,7 +239,7 @@ const Products = ({ apiProducts }) => {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-xl text-[#6B7280] mb-8"
             >
-              Our pharmaceutical products are available in more than 24+ countries around the world. With strategic partnerships and a robust supply chain, we ensure reliable and timely delivery to healthcare providers, wholesalers, and distributors globally
+              Our pharmaceutical products are available in more than 9+ countries around the world. With strategic partnerships and a robust supply chain, we ensure reliable and timely delivery to healthcare providers, wholesalers, and distributors globally
             </motion.p>
           </div>
         </div>
@@ -247,7 +263,7 @@ const Products = ({ apiProducts }) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12"
+            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8 mb-12"
           >
             {productCategories.map((category, index) => (
               <Link key={index} to={`/products/${category.title.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -259,14 +275,14 @@ const Products = ({ apiProducts }) => {
                   }}
                   className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:border-[#E85B2C]/30 transition-all duration-300 cursor-pointer h-full"
                 >
-                  <div className="p-6 text-center">
-                    <div className='min-h-[170px] md:min-h-[260px]'>
+                  <div className="p-6 text-center h-full">
+                    <div style={{height:'55%'}}>
                       <div className="text-5xl mb-4">{category.icon}</div>
                       <h3 className="text-xl font-semibold text-[#1E3A5F] mb-3">{category.title}</h3>
                       <p className="text-[#6B7280] mb-6">{category.description}</p>
                     </div>
 
-                    <div className="border-t border-gray-100 pt-4 mt-2">
+                    <div className="border-t border-gray-100 pt-4 mt-2" style={{height:'45%'}}>
                       <h4 className="font-medium text-left text-[#1E3A5F] mb-3">Key Products:</h4>
                       <ul className="text-[#6B7280] text-sm">
                         {category.products.map((product, i) => (

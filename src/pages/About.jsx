@@ -41,7 +41,7 @@ const About = () => {
   ];
 
   const strengths = [
-    "<strong>Global Reach:</strong> Exporting to over 10+ countries across AFRICA, ASIA",
+    "<strong>Global Reach:</strong> Exporting to over 9+ countries across AFRICA, ASIA and LATAM",
     "<strong>Compliance with International Standards:</strong> Adhering to GMP, WHO, and local regulatory requirements",
     "<strong>Commitment to Quality:</strong> Delivering pharmaceutical products that meet the highest standards",
     ];
@@ -78,7 +78,7 @@ const About = () => {
           <h2 className="text-3xl font-bold text-[#1E3A5F] text-center mb-8">Who Are We</h2>
           <div className="bg-white p-8 rounded-lg shadow-lg">
             <p className="text-[#111827] text-lg leading-relaxed">
-              Founded in 2025, <b>JAINOVA LIFESCIENCES PVT LTD</b> has established itself as a premier pharmaceutical exporter, committed to providing safe, effective, and affordable medicines to markets across 15 regions. Our global presence spans 10+ countries, and we pride ourselves on our compliance with international regulatory standards and our dedication to improving global healthcare.
+              Founded in 2025, <b>JAINOVA LIFESCIENCES PVT LTD</b> has established itself as a premier pharmaceutical exporter, committed to providing safe, effective, and affordable medicines to markets across 15 regions. Our global presence spans 9+ countries, and we pride ourselves on our compliance with international regulatory standards and our dedication to improving global healthcare.
             </p>
           </div>
         </motion.div>
@@ -93,13 +93,19 @@ const About = () => {
           <h2 className="text-3xl font-bold text-[#1E3A5F] text-center mb-8">Our Mission & Vision</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white p-8 rounded-lg shadow-lg border-t-4 border-[#1E3A5F] h-full">
-              <h3 className="text-2xl font-bold text-[#1E3A5F] mb-4">Our Mission</h3>
+              <div className="flex justify-center mb-6">
+                <div className="text-6xl">🎯</div>
+              </div>
+              <h3 className="text-2xl font-bold text-[#1E3A5F] mb-4 text-center">Our Mission</h3>
               <p className="text-[#111827] leading-relaxed">
                 We commit ourselves to total customer care by delivering world-class products and services.
               </p>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg border-t-4 border-[#E85B2C] h-full">
-              <h3 className="text-2xl font-bold text-[#1E3A5F] mb-4">Our Vision</h3>
+              <div className="flex justify-center mb-6">
+                <div className="text-6xl">🚀</div>
+              </div>
+              <h3 className="text-2xl font-bold text-[#1E3A5F] mb-4 text-center">Our Vision</h3>
               <p className="text-[#111827] leading-relaxed">
                 To become the Most Respected Pharma Company.
               </p>
