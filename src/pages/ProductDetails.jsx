@@ -17,7 +17,7 @@ const ProductDetails = ({ apiProducts }) => {
   };
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] to-[#e0e7ef] font-sans flex items-center justify-center py-10 px-2 mt-40">
+    <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] to-[#e0e7ef] font-sans flex items-center justify-center py-10 px-2 mt-20">
       <motion.div
         className="w-[75vw] bg-white rounded-2xl shadow-xl p-10 border border-gray-100 flex flex-col items-center"
         initial={{ opacity: 0, y: 40 }}
