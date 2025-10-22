@@ -12,7 +12,7 @@ const Products = ({ apiProducts }) => {
       description: "Sterile injectable formulations for intravenous, intramuscular, and subcutaneous administration.",
       // icon: "💉",
       icon: <img src="/icons/injectable.png" alt="Injectable Icon" className="mx-auto" style={{width: '3rem', height: '3rem'}} />,
-      products: ["Antibiotic Injections", "Cardiovascular Injections", "Pain Management", "Vitamin Injections"],
+      products: ['Antibiotics / Antibacterials', 'Analgesics / Anti-inflammatory', 'Corticosteroids', 'Antiemetics & Gastrointestinal', 'Cardiovascular / Diuretics', 'Nutritional & Supportive'],
       url: "/Injectable"
     },
     {
@@ -20,7 +20,7 @@ const Products = ({ apiProducts }) => {
       description: "Sterile injectable formulations for intravenous, intramuscular, and subcutaneous administration.",
       // icon: "💉",
       icon: <img src="/icons/bl-injectable.png" alt="bl-Injectable Icon" className="mx-auto" style={{width: '3rem', height: '3rem'}} />,
-      products: ["Antibiotic Injections", "Cardiovascular Injections", "Pain Management", "Vitamin Injections"],
+      products: ['Cephalosporins', 'Penicillin', 'Carbapenems', 'Monobactams'],
       url: "/Injectable"
     },
     {
@@ -189,7 +189,7 @@ const Products = ({ apiProducts }) => {
     { name: "WHO Guidelines Compliance", icon: "🌍" },
     { name: "ISO 9001:2015", icon: "🏅" },
     { name: "FDA Approved Facilities", icon: "🔐" },
-    { name: "EU GMP Certification", icon: "🇪🇺" },
+    { name: "EU GMP Certification", icon: "⭐" },
     { name: "Pharmacopeial Standards", icon: "📊" }
   ];
 
@@ -282,7 +282,7 @@ const Products = ({ apiProducts }) => {
                       <p className="text-[#6B7280] mb-6">{category.description}</p>
                     </div>
 
-                    <div className="border-t border-gray-100 pt-4 mt-2" style={{height:'45%'}}>
+                    <div className="border-t border-gray-100 py-4 my-2" style={{height:'45%'}}>
                       <h4 className="font-medium text-left text-[#1E3A5F] mb-3">Key Products:</h4>
                       <ul className="text-[#6B7280] text-sm">
                         {category.products.map((product, i) => (

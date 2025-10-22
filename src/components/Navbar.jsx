@@ -33,7 +33,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white fixed w-full top-0 z-50 shadow-sm font-sans" style={{ fontFamily: 'Poppins, Inter, sans-serif' }}>
-      <div className="container mx-auto px-4 py-4" style={{paddingLeft:'30px'}}>
+      <div className="container mx-auto px-4 py-4" style={{paddingLeft:'40px'}}>
         <div className="flex justify-between items-center">
           <Link 
             to="/" 
@@ -43,7 +43,7 @@ const Navbar = () => {
             >
             <img 
               style={{ transform: 'scale(2)' }}
-              src="/images/jainova-lifesciences-logo.jpg" 
+              src="/images/jainova-lifesciences-logo-full.jpg" 
               alt="Jainova Lifesciences Logo" 
               className="h-8 md:h-10 w-auto"
             />
