@@ -15,3 +15,74 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Custom styles for react-phone-number-input */
+.PhoneInput {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+.PhoneInput .PhoneInputCountry {
+  position: absolute !important;
+  top: 50% !important;
+  left: 16px !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  pointer-events: all !important;
+  cursor: pointer !important;
+  padding: 4px 0 !important;
+}
+
+.PhoneInput .PhoneInputCountryIcon {
+  width: 20px !important;
+  height: 15px !important;
+  display: block !important;
+  margin-right: 2px !important;
+}
+
+.PhoneInput .PhoneInputCountrySelect {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  color: #374151 !important;
+  appearance: none !important;
+  padding: 4px 4px 4px 16px !important;
+  margin: 0 !important;
+  margin-left: 8px !important;
+  min-width: fit-content !important;
+}
+
+.PhoneInput .PhoneInputCountrySelectArrow {
+  display: none !important;
+}
+
+.PhoneInput input[type="tel"] {
+  width: 100% !important;
+  padding: 12px 16px 12px 80px !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  color: #1f2937 !important;
+  background-color: #ffffff !important;
+  transition: all 200ms ease-in-out !important;
+  box-sizing: border-box !important;
+  min-height: 48px !important;
+}
+
+.PhoneInput input[type="tel"]:focus {
+  outline: none !important;
+  border-color: transparent !important;
+  box-shadow: 0 0 0 2px #1E3A5F !important;
+}
+
+.PhoneInput input[type="tel"]::placeholder {
+  color: #9ca3af !important;
+  font-size: 16px !important;
+}

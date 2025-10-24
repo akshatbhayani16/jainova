@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import PhoneInput, { isValidPhoneNumber, getCountries, getCountryCallingCode } from 'react-phone-number-input';
-import 'react-phone-number-input/style.css';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,8 +7,8 @@ const Contact = () => {
     Email: '',
     Subject: '',
     Message: '',
+    Number: '',
   });
-  const [phoneNumber, setPhoneNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
   const [errors, setErrors] = useState({
@@ -18,55 +16,10 @@ const Contact = () => {
     Number: '',
   });
 
-  // Phone number validation function
-  const validatePhoneNumber = (phone) => {
-    if (!phone) return '';
-    
-    try {
-      if (isValidPhoneNumber(phone)) {
-        return '';
-      } else {
-        return 'Please enter a valid phone number';
-      }
-    } catch (error) {
-      return 'Invalid phone number format';
-    }
-  };
-
-  // Handle phone number change with validation
-  const handlePhoneChange = (value) => {
-    setPhoneNumber(value || '');
-    
-    // Validate phone number
-    const phoneError = validatePhoneNumber(value);
-    setErrors(prev => ({
-      ...prev,
-      Number: phoneError
-    }));
-  };
-
   // Helper validation functions
   const validateEmail = (email) => {
-    if (!email) return { isValid: false, message: 'Email is required' };
-    
-    // More comprehensive email regex
-    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    
-    if (!emailRegex.test(email)) {
-      return { isValid: false, message: 'Please enter a valid email address' };
-    }
-    
-    // Check for common email format issues
-    if (email.length > 254) {
-      return { isValid: false, message: 'Email address is too long' };
-    }
-    
-    const parts = email.split('@');
-    if (parts[0].length > 64) {
-      return { isValid: false, message: 'Email username part is too long' };
-    }
-    
-    return { isValid: true, message: '' };
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
   
   const validatePhone = (phone) => {
@@ -77,31 +30,27 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate email
-    const emailValidation = validateEmail(formData.Email);
-    
-    // Validate phone number
-    const phoneError = validatePhoneNumber(phoneNumber);
-    
-    if (!emailValidation.isValid || phoneError) {
+    // Validate before submission
+    const emailValid = validateEmail(formData.Email);
+    const phoneValid = validatePhone(formData.Number);
+    if (!emailValid || !phoneValid) {
       setErrors({
-        Email: !emailValidation.isValid ? emailValidation.message : '',
-        Number: phoneError || '',
+        Email: !emailValid ? 'Please enter a valid email address' : '',
+        Number: !phoneValid ? 'Please enter a valid phone number' : '',
       });
       return;
     }
-    
     setErrors({ Email: '', Number: '' });
     setIsSubmitting(true);
     setSubmitStatus({ type: '', message: '' });
 
-    const apiEndPoint = 'https://script.google.com/macros/s/AKfycbwN286r0mxx7PKqrHsUD5c7oJiefroYabnxzkEv9Vx27Rn6Io_d413c8mSb7seermRZ/exec';
+    const apiEndPoint = 'https://script.google.com/macros/s/AKfycbyrlWED2ew2FIQMgMjoiIGlmfN7tE1bl_78wnVD5ErL7HjGnhKLosy_-a0SkKKngzVJDg/exec';
     const formD = new FormData();
     formD.append('Name', formData.Name);
     formD.append('Email', formData.Email);
     formD.append('Subject', formData.Subject);
     formD.append('Message', formData.Message);
-    formD.append('PhoneNumber', phoneNumber || '');
+    formD.append('PhoneNumber', formData.Number);
     formD.append('Date', new Date().toLocaleDateString());
 
     try {
@@ -112,22 +61,20 @@ const Contact = () => {
       if (!response.ok) {
         throw new Error('Failed to send message');
       }
-      
-      // Get response text first, then try to parse as JSON
-      const responseText = await response.text();
+      // Try to parse as JSON, fallback to text
       let data;
       try {
-        data = JSON.parse(responseText);
+        data = await response.json();
       } catch {
-        data = responseText;
+        data = await response.text();
       }
       setFormData({
         Name: '',
         Email: '',
         Subject: '',
         Message: '',
+        Number: '',
       });
-      setPhoneNumber('');
       setSubmitStatus({ type: 'success', message: 'Thank you — your message was sent successfully.' });
       setIsSubmitting(false);
       console.log('data', data);
@@ -261,39 +208,14 @@ const Contact = () => {
               </div>
               <div>
                 <label className="block text-[#6B7280] font-medium mb-2">Phone Number</label>
-                <div className="relative">
-                  <PhoneInput
-                    international
-                    countryCallingCodeEditable={false}
-                    defaultCountry="IN"
-                    value={phoneNumber}
-                    onChange={handlePhoneChange}
-                    placeholder="Enter phone number"
-                    limitMaxLength={true}
-                    style={{
-                      width: '100%'
-                    }}
-                  />
-                  {/* Custom dropdown arrow - positioned right next to flag */}
-                  <div className="absolute left-[42px] top-1/2 transform -translate-y-1/2 pointer-events-none z-5">
-                    <svg 
-                      width="8" 
-                      height="6" 
-                      viewBox="0 0 8 6" 
-                      fill="none" 
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="text-gray-400"
-                    >
-                      <path 
-                        d="M1 2L4 5L7 2" 
-                        stroke="currentColor" 
-                        strokeWidth="1.2" 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                </div>
+                <input
+                  type="text"
+                  name="Number"
+                  value={formData.Number}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] focus:border-transparent transition-all duration-200"
+                  placeholder="Your phone number"
+                />
                 {errors.Number && <p className="text-red-500 text-sm mt-1">{errors.Number}</p>}
               </div>
               <div>
