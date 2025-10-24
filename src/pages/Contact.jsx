@@ -6,32 +6,82 @@ const Contact = () => {
     Name: '',
     Email: '',
     Subject: '',
-    Message: ''
+    Message: '',
+    Number: '',
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+  const [errors, setErrors] = useState({
+    Email: '',
+    Number: '',
+  });
+
+  // Helper validation functions
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+  const validatePhone = (phone) => {
+    // Accepts 10-15 digits, optional +, spaces, dashes
+    return /^\+?[0-9\s-]{10,15}$/.test(phone);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // This would typically connect to your backend API
+
+    // Validate before submission
+    const emailValid = validateEmail(formData.Email);
+    const phoneValid = validatePhone(formData.Number);
+    if (!emailValid || !phoneValid) {
+      setErrors({
+        Email: !emailValid ? 'Please enter a valid email address' : '',
+        Number: !phoneValid ? 'Please enter a valid phone number' : '',
+      });
+      return;
+    }
+    setErrors({ Email: '', Number: '' });
     setIsSubmitting(true);
     setSubmitStatus({ type: '', message: '' });
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus({ 
-        type: 'success', 
-        message: 'Thank you for your message. We will get back to you soon!' 
+    const apiEndPoint = 'https://script.google.com/macros/s/AKfycbyrlWED2ew2FIQMgMjoiIGlmfN7tE1bl_78wnVD5ErL7HjGnhKLosy_-a0SkKKngzVJDg/exec';
+    const formD = new FormData();
+    formD.append('Name', formData.Name);
+    formD.append('Email', formData.Email);
+    formD.append('Subject', formData.Subject);
+    formD.append('Message', formData.Message);
+    formD.append('PhoneNumber', formData.Number);
+    formD.append('Date', new Date().toLocaleDateString());
+
+    try {
+      const response = await fetch(apiEndPoint, {
+        method: 'POST',
+        body: formD,
       });
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+      // Try to parse as JSON, fallback to text
+      let data;
+      try {
+        data = await response.json();
+      } catch {
+        data = await response.text();
+      }
       setFormData({
         Name: '',
         Email: '',
         Subject: '',
-        Message: ''
+        Message: '',
+        Number: '',
       });
-    }, 1500);
+      setSubmitStatus({ type: 'success', message: 'Thank you — your message was sent successfully.' });
+      setIsSubmitting(false);
+      console.log('data', data);
+    } catch (err) {
+      setSubmitStatus({ type: 'error', message: err instanceof Error ? err.message : 'Something went wrong' });
+      setIsSubmitting(false);
+      console.log(err instanceof Error ? err.message : 'Something went wrong');
+    }
   };
 
   const handleChange = (e) => {
@@ -68,7 +118,7 @@ const Contact = () => {
       <div className="bg-gradient-to-b from-[#1E3A5F]/10 to-[#F9FAFB]">
         <div className="container mx-auto px-4 py-16">
           <div className="text-center max-w-3xl mx-auto">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -76,7 +126,7 @@ const Contact = () => {
             >
               Get in Touch
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
@@ -90,7 +140,7 @@ const Contact = () => {
 
       <div className="container mx-auto px-4 py-12">
         {/* Contact Information Cards */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
@@ -123,9 +173,8 @@ const Contact = () => {
           >
             <h2 className="text-2xl font-bold text-[#1E3A5F] mb-6">Let's Chat</h2>
             {submitStatus.message && (
-              <div className={`mb-6 p-4 rounded-lg ${
-                submitStatus.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-              }`}>
+              <div className={`mb-6 p-4 rounded-lg ${submitStatus.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                }`}>
                 {submitStatus.message}
               </div>
             )}
@@ -154,7 +203,20 @@ const Contact = () => {
                     required
                     placeholder="Your email address"
                   />
+                  {errors.Email && <p className="text-red-500 text-sm mt-1">{errors.Email}</p>}
                 </div>
+              </div>
+              <div>
+                <label className="block text-[#6B7280] font-medium mb-2">Phone Number</label>
+                <input
+                  type="text"
+                  name="Number"
+                  value={formData.Number}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] focus:border-transparent transition-all duration-200"
+                  placeholder="Your phone number"
+                />
+                {errors.Number && <p className="text-red-500 text-sm mt-1">{errors.Number}</p>}
               </div>
               <div>
                 <label className="block text-[#6B7280] font-medium mb-2">Subject</label>
@@ -178,7 +240,7 @@ const Contact = () => {
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] focus:border-transparent transition-all duration-200"
                   required
                   placeholder="Your message..."
-                  style={{height:'380px'}}
+                  style={{ height: '380px' }}
                 ></textarea>
               </div>
               <motion.button
@@ -186,9 +248,8 @@ const Contact = () => {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`w-full bg-[#E85B2C] text-white py-3 px-6 rounded-lg font-medium ${
-                  isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:bg-[#E85B2C]/90'
-                } transition-all duration-200 shadow-md`}
+                className={`w-full bg-[#E85B2C] text-white py-3 px-6 rounded-lg font-medium ${isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:bg-[#E85B2C]/90'
+                  } transition-all duration-200 shadow-md`}
               >
                 {isSubmitting ? 'Sending...' : 'Submit Message'}
               </motion.button>
@@ -208,64 +269,123 @@ const Contact = () => {
               <div className="rounded-lg overflow-hidden h-[400px] shadow-sm border border-gray-100">
                 {/* Google Maps iframe (placeholder) */}
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235013.70717844116!2d72.4396558968064!3d23.02037455483408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1691135315899!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Jainova Lifesciences Location"
-                ></iframe>
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235013.70717844116!2d72.4396558968064!3d23.02037455483408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!"
+                  value={formData.Email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200 "
+                  required
+                  placeholder="Your email address"
+                />
               </div>
             </div>
-
-            {/* Business Hours */}
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h2 className="text-2xl font-bold text-[#1E3A5F] mb-6">Business Hours</h2>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center border-b border-gray-100 pb-3">
-                  <span className="text-[#6B7280] font-medium">Monday - Friday</span>
-                  <span className="text-[#1E3A5F] font-semibold">9:00 AM - 6:00 PM</span>
-                </div>
-                <div className="flex justify-between items-center border-b border-gray-100 pb-3">
-                  <span className="text-[#6B7280] font-medium">Saturday</span>
-                  <span className="text-[#1E3A5F] font-semibold">10:00 AM - 2:00 PM</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-[#6B7280] font-medium">Sunday</span>
-                  <span className="text-[#E85B2C] font-semibold">Closed</span>
-                </div>
-              </div>
+            <div>
+              <label className="block text-[#6B7280] font-medium mb-2">Subject</label>
+              <input
+                type="text"
+                name="Subject"
+                value={formData.Subject}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] focus:border-transparent transition-all duration-200"
+                required
+                placeholder="What is this regarding?"
+              />
             </div>
-          </motion.div>
-        </div>
-
-        {/* Additional Support Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center"
-        >
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-[#1E3A5F] mb-4">Need Immediate Assistance?</h2>
-            <p className="text-[#6B7280] mb-6">
-              Our customer support team is available to help you with any questions about our pharmaceutical products and services.
-            </p>
-            <a 
-              href="tel:+918005557890" 
-              className="inline-flex items-center justify-center bg-[#1E3A5F] text-white px-6 py-3 rounded-lg hover:bg-[#1E3A5F]/90 transition-colors duration-200 font-medium"
+            <div>
+              <label className="block text-[#6B7280] font-medium mb-2">Message</label>
+              <textarea
+                name="Message"
+                value={formData.Message}
+                onChange={handleChange}
+                rows="5"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] focus:border-transparent transition-all duration-200"
+                required
+                placeholder="Your message..."
+                style={{ height: '380px' }}
+              ></textarea>
+            </div>
+            <motion.button
+              type="submit"
+              disabled={isSubmitting}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className={`w-full bg-[#E85B2C] text-white py-3 px-6 rounded-lg font-medium ${isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:bg-[#E85B2C]/90'
+                } transition-all duration-200 shadow-md`}
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-              </svg>
-              Call Helpline
-            </a>
+              {isSubmitting ? 'Sending...' : 'Submit Message'}
+            </motion.button>
+          </form>
+        </motion.div>
+
+        {/* Map Section */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-8"
+        >
+          {/* Map */}
+          <div className="bg-white rounded-lg shadow-md p-8">
+            <h2 className="text-2xl font-bold text-[#1E3A5F] mb-6">Our Location</h2>
+            <div className="rounded-lg overflow-hidden h-[400px] shadow-sm border border-gray-100">
+              {/* Google Maps iframe (placeholder) */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235013.70717844116!2d72.4396558968064!3d23.02037455483408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1691135315899!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Jainova Lifesciences Location"
+              ></iframe>
+            </div>
+          </div>
+
+          {/* Business Hours */}
+          <div className="bg-white rounded-lg shadow-md p-8">
+            <h2 className="text-2xl font-bold text-[#1E3A5F] mb-6">Business Hours</h2>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center border-b border-gray-100 pb-3">
+                <span className="text-[#6B7280] font-medium">Monday - Friday</span>
+                <span className="text-[#1E3A5F] font-semibold">9:00 AM - 6:00 PM</span>
+              </div>
+              <div className="flex justify-between items-center border-b border-gray-100 pb-3">
+                <span className="text-[#6B7280] font-medium">Saturday</span>
+                <span className="text-[#1E3A5F] font-semibold">10:00 AM - 2:00 PM</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-[#6B7280] font-medium">Sunday</span>
+                <span className="text-[#E85B2C] font-semibold">Closed</span>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
+
+      {/* Additional Support Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="mt-20 text-center"
+      >
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-bold text-[#1E3A5F] mb-4">Need Immediate Assistance?</h2>
+          <p className="text-[#6B7280] mb-6">
+            Our customer support team is available to help you with any questions about our pharmaceutical products and services.
+          </p>
+          <a
+            href="tel:+918005557890"
+            className="inline-flex items-center justify-center bg-[#1E3A5F] text-white px-6 py-3 rounded-lg hover:bg-[#1E3A5F]/90 transition-colors duration-200 font-medium"
+          >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            Call Helpline
+          </a>
+        </div>
+      </motion.div>
     </div>
   );
 };
