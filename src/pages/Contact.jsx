@@ -318,7 +318,7 @@ const Contact = () => {
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] focus:border-transparent transition-all duration-200"
                   required
                   placeholder="Your message..."
-                  style={{ height: '120px' }}
+                  style={{ height: '290px' }}
                 ></textarea>
               </div>
               <motion.button
