@@ -38,10 +38,10 @@ code {
 }
 
 .PhoneInput .PhoneInputCountryIcon {
-  width: 20px !important;
-  height: 15px !important;
-  display: block !important;
-  margin-right: 2px !important;
+  width: 20px;
+  height: 15px;
+  display: block;
+  margin-right: 2px;
 }
 
 .PhoneInput .PhoneInputCountrySelect {
@@ -85,4 +85,74 @@ code {
 .PhoneInput input[type="tel"]::placeholder {
   color: #9ca3af !important;
   font-size: 16px !important;
+}
+
+/* Custom styles for country dropdown menu */
+.PhoneInput .PhoneInputCountrySelect {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.PhoneInput .PhoneInputCountrySelect:focus {
+  border-color: #1E3A5F;
+  box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
+  outline: none;
+}
+
+/* Style individual options */
+.PhoneInput .PhoneInputCountrySelect option {
+  background-color: white;
+  color: #374151;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.PhoneInput .PhoneInputCountrySelect option:hover {
+  background-color: #f9fafb;
+}
+
+.PhoneInput .PhoneInputCountrySelect option:checked,
+.PhoneInput .PhoneInputCountrySelect option:selected {
+  background-color: #1E3A5F;
+  color: white;
+}
+
+.PhoneInput .PhoneInputCountrySelect option:focus {
+  background-color: #e5e7eb;
+  outline: none;
+}
+
+/* Custom scrollbar styling */
+.PhoneInput .PhoneInputCountrySelect::-webkit-scrollbar {
+  width: 8px;
+}
+
+.PhoneInput .PhoneInputCountrySelect::-webkit-scrollbar-track {
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.PhoneInput .PhoneInputCountrySelect::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.PhoneInput .PhoneInputCountrySelect::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Firefox scrollbar */
+.PhoneInput .PhoneInputCountrySelect {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f8f9fa;
 }
