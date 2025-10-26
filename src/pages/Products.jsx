@@ -190,7 +190,20 @@ const Products = ({ apiProducts }) => {
     { name: "ISO 9001:2015", icon: "🏅" },
     { name: "FDA Approved Facilities", icon: "🔐" },
     { name: "EU GMP Certification", icon: "⭐" },
-    { name: "Pharmacopeial Standards", icon: "📊" }
+    { name: "Pharmacopeial Standards", icon: "📊" },
+    // New certifications requested
+    {
+      name: "CE Certification",
+      icon: (
+        <img src="/images/ce-logo.webp" alt="CE Certification" className="w-8 h-8 object-contain" />
+      )
+    },
+    {
+      name: "FSSAI Registration",
+      icon: (
+        <img src="/images/fssai-logo.webp" alt="FSSAI Registration" className="w-10 h-10 object-contain" />
+      )
+    }
   ];
 
   // Global presence data

@@ -4,27 +4,28 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Home = () => {
-  // Product/Services cards data
+  // Top 3 Most Popular Product Categories
   const productServices = [
     {
-      title: "Generic Medicines",
-      description: "High-quality, affordable alternatives to brand-name medications.",
-      icon: "💊",
+      title: "General Injectable",
+      description: "Sterile injectable formulations for intravenous, intramuscular, and subcutaneous administration.",
+      icon: <img src="/icons/injectable.png" alt="Injectable Icon" className="mx-auto" style={{ width: '3rem', height: '3rem' }} />,
+      productId: "general-injectable",
+      categories: ['Antibiotics / Antibacterials', 'Analgesics / Anti-inflammatory', 'Corticosteroids'],
     },
     {
-      title: "Specialty Products",
-      description: "Advanced formulations for complex therapeutic areas.",
-      icon: "🧪",
+      title: "Ophthalmic Products",
+      description: "Specialized eye care products including drops, ointments, and solutions for ocular conditions.",
+      icon: <img src="/icons/opthalmic.png" alt="Ophthalmic Icon" className="mx-auto" style={{ width: '3rem', height: '3rem' }} />,
+      productId: "ophthalmic",
+      categories: ["Eye Drops", "Antibiotic Ointments", "Anti-inflammatory Solutions"],
     },
     {
-      title: "Research & Development",
-      description: "Innovative solutions for tomorrow's healthcare challenges.",
-      icon: "🔬",
-    },
-    {
-      title: "Global Distribution",
-      description: "Reliable supply chain ensuring worldwide product availability.",
-      icon: "🌍",
+      title: "Solid Oral Dosages",
+      description: "Tablets, capsules, and other solid dosage forms for oral administration.",
+      icon: <img src="/icons/solid-oral.png" alt="Solid Oral Icon" className="mx-auto" style={{ width: '3rem', height: '3rem' }} />,
+      productId: "solid-oral",
+      categories: ["Tablets", "Capsules", "Chewable Forms"],
     },
   ];
 
@@ -43,7 +44,7 @@ const Home = () => {
     {
       title: "Affordable Solutions",
       description: "Committed to making quality healthcare accessible to all.",
-      icon: "💰",
+      icon: <img src="/icons/solid-oral.png" alt="Solid Oral Icon" className="mx-auto" style={{ width: '3rem', height: '3rem' }} />,
     },
     {
       title: "Patient-Centric Innovation",
@@ -79,19 +80,19 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-white font-sans">
-      {/* Hero Section */}
-      <div className="pt-20 bg-gradient-to-b from-[#1E3A5F]/10 to-white overflow-hidden relative">
+  {/* Hero Section */}
+  <div className="pt-32 bg-gradient-to-b from-[#1E3A5F]/10 to-white overflow-hidden relative">
         {/* Hero Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-[#1E3A5F]/80 to-transparent z-10"></div>
           <img
-            src="/images/home-page-hero.jpg"
+            src="/images/1.avif"
             alt="Jainova Lifesciences Pharmaceutical Research"
             className="w-full h-full object-cover"
           />
         </div>
 
-        <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
+  <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-12">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -202,14 +203,14 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-[#1E3A5F] mb-4">
-              Our Products & Services
+              Our Products
             </h2>
             <p className="text-[#6B7280] max-w-2xl mx-auto">
               Delivering a comprehensive range of pharmaceutical solutions to meet diverse healthcare needs.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {productServices.map((item, index) => (
               <motion.div
                 key={index}
@@ -217,22 +218,36 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#E85B2C]/20 group"
               >
-                <div className="text-4xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-semibold text-[#1E3A5F] mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-[#6B7280]">{item.description}</p>
-                <Link
-                  to="/products"
-                  className="mt-4 inline-flex items-center text-[#E85B2C] hover:text-[#E85B2C]/80 font-medium transition-colors duration-200"
-                >
-                  Learn More
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
+                <div>
+                  <div className="mb-6">
+                    <div className="mb-4 text-center group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+                    <h3 className="text-xl font-semibold text-[#1E3A5F] mb-3 text-center">
+                      {item.title}
+                    </h3>
+                    <p className="text-[#6B7280] mb-4 text-center">{item.description}</p>
+
+                    {/* Category examples */}
+                    <div className="mb-4">
+                      <p className="text-sm text-[#6B7280] mb-2 font-medium">Popular Categories:</p>
+                      <ul className="text-xs text-[#6B7280] space-y-1">
+                        {item.categories.map((category, catIndex) => (
+                          <li key={catIndex} className="flex items-center">
+                            <span className="w-1 h-1 bg-[#E85B2C] rounded-full mr-2"></span>
+                            {category}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <Link
+                    to={`/products/${item.productId}`}
+                    className="block w-full bg-[#E85B2C] text-white text-center py-3 px-4 rounded-lg font-medium hover:bg-[#E85B2C]/90 transition-all duration-200 group-hover:shadow-md"
+                  >
+                    View Products
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>

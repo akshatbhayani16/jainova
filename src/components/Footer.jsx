@@ -89,35 +89,45 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start text-[#a7f5ee]">
                 <span className="mt-1 mr-3">
-                  {/* Address Icon */}
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zm0 0c-4 0-7 2.239-7 5v2h14v-2c0-2.761-3-5-7-5z" /></svg>
+                  {/* Address / Location Pin Icon */}
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" />
+                  </svg>
                 </span>
                 <span>
-                  PharmaNova Campus, Pharma City,<br />Ahmedabad, Gujarat
+                  43, Parthbhumi, near Government tubewell, Bopal, Ahmedabad, Daskroi, Gujarat, India, 380058.
                 </span>
               </li>
               <li className="flex items-center text-[#a7f5ee]">
                 <span className="mr-3">
-                  {/* Phone Icon */}
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm10-10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
+                  {/* Phone / Handset Icon */}
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.05-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 22 2 13.93 2 3a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.05l-2.2 2.2z" />
+                  </svg>
                 </span>
-                <span>+91 800 123 4567</span>
+                <span>+91 9265147602</span>
               </li>
               <li className="flex items-center text-[#a7f5ee]">
                 <span className="mr-3">
-                  {/* Email Icon */}
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm0 0v4a4 4 0 01-8 0v-4" /></svg>
+                  {/* Email / Envelope Icon */}
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 8.5l9 6 9-6" />
+                    <path d="M21 8.5V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8.5" />
+                  </svg>
                 </span>
-                <span>info@pharmanova.com</span>
+                <span>jainova.lifesciences@gmail.com</span>
               </li>
             </ul>
           </div>
         </div>
         {/* Bottom Bar */}
-        <div className="border-t border-[#a7f5ee]/20 mt-8 pt-8 text-center">
-          <p className="text-[#a7f5ee]">
-            © {new Date().getFullYear()} PharmaNova. All rights reserved.
-          </p>
+        <div className="border-t border-[#a7f5ee]/20 mt-8 pt-8 flex justify-between">
+          <span className="text-[#a7f5ee]">
+            © {new Date().getFullYear()} Jainova Lifesciences. All rights reserved.
+          </span>
+          <span className="text-[#a7f5ee]">
+            Designed By <a className="text-white" href="https://thebytespark.com/">ByteSpark</a>
+          </span>
         </div>
       </div>
     </footer>

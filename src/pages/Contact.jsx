@@ -318,7 +318,7 @@ const Contact = () => {
                   className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E3A5F] focus:border-transparent transition-all duration-200"
                   required
                   placeholder="Your message..."
-                  style={{ height: '290px' }}
+                  style={{ height: '240px' }}
                 ></textarea>
               </div>
               <motion.button
@@ -362,13 +362,13 @@ const Contact = () => {
               <h2 className="text-2xl font-bold text-[#1E3A5F] mb-6">Business Hours</h2>
               <div className="space-y-4">
                 <div className="flex justify-between items-center border-b border-gray-100 pb-3">
-                  <span className="text-[#6B7280] font-medium">Monday - Friday</span>
-                  <span className="text-[#1E3A5F] font-semibold">9:00 AM - 6:00 PM</span>
+                  <span className="text-[#6B7280] font-medium">Monday - Saturday</span>
+                  <span className="text-[#1E3A5F] font-semibold">10:00 AM - 7:00 PM</span>
                 </div>
-                <div className="flex justify-between items-center border-b border-gray-100 pb-3">
+                {/* <div className="flex justify-between items-center border-b border-gray-100 pb-3">
                   <span className="text-[#6B7280] font-medium">Saturday</span>
                   <span className="text-[#1E3A5F] font-semibold">10:00 AM - 2:00 PM</span>
-                </div>
+                </div> */}
                 <div className="flex justify-between items-center">
                   <span className="text-[#6B7280] font-medium">Sunday</span>
                   <span className="text-[#E85B2C] font-semibold">Closed</span>
