@@ -38,7 +38,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4 tracking-tight">PharmaNova</h3>
+            <h3 className="text-xl font-bold mb-4 tracking-tight">Jainova Lifesciences</h3>
             <p className="text-[#a7f5ee]">
               Innovating Healthcare, Delivering Trust.<br />Your partner in pharmaceutical excellence.
             </p>

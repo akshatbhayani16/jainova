@@ -149,20 +149,20 @@ const Contact = () => {
     {
       icon: "📍",
       title: "Headquarters",
-      details: "Jainova Lifesciences Campus, Pharmaceutical District, Ahmedabad, Gujarat 380054",
+      details: "43, Parthbhumi, near Government tubewell, Bopal, Ahmedabad, Daskroi, Gujarat, India, 380058",
       link: "https://maps.app.goo.gl/ZNGSGoUaQrvuiz5NA"
     },
     {
       icon: "📞",
       title: "Customer Support",
-      details: "+91 792 584 0707",
-      link: "tel:+917925840707"
+      details: "+91 9265147602",
+      link: "tel:+919265147602"
     },
     {
       icon: "✉️",
       title: "Email Inquiries",
-      details: "contact@mediplusindialimited.com",
-      link: "mailto:contact@mediplusindialimited.com"
+      details: "jainova.lifesciences@gmail.com",
+      link: "mailto:jainova.lifesciences@gmail.com"
     }
   ];
 
