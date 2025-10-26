@@ -121,12 +121,12 @@ const Footer = () => {
           </div>
         </div>
         {/* Bottom Bar */}
-        <div className="border-t border-[#a7f5ee]/20 mt-8 pt-8 flex justify-between">
+        <div className="border-t border-[#a7f5ee]/20 mt-8 pt-8 flex flex-col md:flex-row md:justify-between items-center text-center gap-2">
           <span className="text-[#a7f5ee]">
             © {new Date().getFullYear()} Jainova Lifesciences. All rights reserved.
           </span>
           <span className="text-[#a7f5ee]">
-            Designed By <a className="text-white" href="https://thebytespark.com/">ByteSpark</a>
+            Designed By <a className="text-white underline ml-1" target="_blank" href="https://thebytespark.com/">ByteSpark</a>
           </span>
         </div>
       </div>
