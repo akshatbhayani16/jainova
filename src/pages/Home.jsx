@@ -86,7 +86,7 @@ const Home = () => {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-[#1E3A5F]/80 to-transparent z-10"></div>
           <img
-            src="/images/1.avif"
+            src="/images/home-page-hero.jpg"
             alt="Jainova Lifesciences Pharmaceutical Research"
             className="w-full h-full object-cover"
           />
